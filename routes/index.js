@@ -5,7 +5,6 @@ const homeCOntroller=require('../controllers/home_controller');
 
 // we are mapping '/' with homw controller
 router.get('/',homeCOntroller.home);
+router.use('/users',require('./users'))
 console.log("router loaded")
-
-
 module.exports=router;
