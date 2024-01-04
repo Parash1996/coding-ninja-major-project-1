@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=title%></title>
+    <title>
+        <%= title %>
+    </title>
 </head>
+
 <body>
-   <h1>codeial <%=title%> page</h1>
+<!-- now its not require becase we have include partials from _header  and footer filefile. -->
+    <!-- <header>header of the page </header> -->
+    <%- include('_header'); -%>
+
+
+        <h1>
+            codeial <%= title %> page
+        </h1>
+        <%- include('_footer'); -%>
+            <!-- <footer>
+                footer of the page
+            </footer> -->
+
+
 </body>
+
 </html>
