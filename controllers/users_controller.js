@@ -19,31 +19,57 @@ module.exports.userProfiles = function (req, res) {
         })
     },
     // get the sign up data 
+    // module.exports.create = async function (req, res) {
+    //     // to do later.
+    //     console.log("is data is comming ?")
+    //     console.log(req.body)
+    //     console.log("yes data is comming")
+    //     if (req.body.password != req.body.confirm_pasword) {
+    //         return res.redirect('back');
+    //     }
+    //     try {
+    //         const user = await User.findOne({ email: req.body.email })
+    //         if (!user) {
+    //             try {
+
+    //                 const newUser= await User.create(req.body)
+    //                 console.log(newUser);
+    //                 res.redirect('/users/signin')
+    //             } catch (error) {
+    //                 console.log('error in creating user while signup', error)
+    //             }
+
+    //         }
+    //         else res.redirect('/users/signup')
+    //     } catch (error) {
+    //         console.log('error finding uer while in sign up', error)
+    //     }
+
+    // },
+
+
+
+
     module.exports.create = async function (req, res) {
-        // to do later.
-        console.log("is data is comming ?")
-        console.log(req.body)
-        console.log("yes data is comming")
         if (req.body.password != req.body.confirm_pasword) {
             return res.redirect('back');
         }
         try {
             const user = await User.findOne({ email: req.body.email })
             if (!user) {
-                try {
-
-                    const newUser= await User.create(req.body)
-                    console.log(newUser);
-                    res.redirect('/users/signin')
-                } catch (error) {
-                    console.log('error in creating user while signup', error)
-                }
-
+                await User.create(req.body)
+                return res.redirect('/users/signin');
             }
-            else res.redirect('/users/signup')
-        } catch (error) {
-            console.log('error finding uer while in sign up', error)
+            return res.redirect('back');
         }
+
+
+        catch (error) {
+            console.log('error in finding in sign up page', error)
+            return
+        }
+
+
 
     },
     //sign in and create a session for user
